@@ -193,4 +193,40 @@ BOOST_AUTO_TEST_SUITE( node_sorter )
 
 	}
 
+	BOOST_AUTO_TEST_CASE( negative_numbers ){
+
+		std::string test = "";
+		std::list<Node*> testNodes;
+
+		for(int i = -5; i < 0; i++){
+			testNodes.push_back(new Node(i));
+		}
+
+		Huff t1(test);
+		t1.sortNodes(testNodes);
+
+		int j = -5;
+		for(auto const& i : testNodes){
+			BOOST_CHECK(i->freq == j);
+			j++;
+		}
+
+	}
+
 BOOST_AUTO_TEST_SUITE_END()
+
+// BOOST_AUTO_TEST_SUITE( construct_tree )
+
+// 	BOOST_AUTO_TEST_CASE( contructor_assign_char ){
+		
+// 	}
+
+// 	BOOST_AUTO_TEST_CASE( contructor_assign_freq ){
+		
+// 	}
+
+// 	BOOST_AUTO_TEST_CASE( contructor_no_char ){
+		
+// 	}
+
+// BOOST_AUTO_TEST_SUITE_END()
