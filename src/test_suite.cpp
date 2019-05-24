@@ -74,3 +74,55 @@ BOOST_AUTO_TEST_SUITE( node_contructor )
 	}
 
 BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE( creating_nodes )
+
+	BOOST_AUTO_TEST_CASE( count_string ){
+
+		std::string test = "aaabbbcccd";
+		int freq[4] = {3,3,3,1};
+
+		Huff t1(test);
+		t1.createTree();
+
+		BOOST_CHECK(t1.treeNodes.size() == 4);
+
+		int j = 0;
+		for(auto const& i : t1.treeNodes){
+			BOOST_CHECK(i->freq == freq[j]);
+			j++;
+		}
+
+	}
+
+	BOOST_AUTO_TEST_CASE( empty_string ){
+		std::string test = "";
+		Huff t1(test);
+		t1.createTree();
+		BOOST_CHECK(t1.treeNodes.size() == 0);
+	}
+
+	BOOST_AUTO_TEST_CASE( one_letter ){
+		std::string test = "a";
+		Huff t1(test);
+		t1.createTree();
+		BOOST_CHECK(t1.treeNodes.size() == 1);
+	}
+
+	BOOST_AUTO_TEST_CASE( mix_letter ){
+		std::string test = "abbcacbcda";
+		int freq[4] = {3,3,3,1};
+
+		Huff t1(test);
+		t1.createTree();
+
+		BOOST_CHECK(t1.treeNodes.size() == 4);
+
+		int j = 0;
+		for(auto const& i : t1.treeNodes){
+			BOOST_CHECK(i->freq == freq[j]);
+			j++;
+		}
+	}
+
+BOOST_AUTO_TEST_SUITE_END()
