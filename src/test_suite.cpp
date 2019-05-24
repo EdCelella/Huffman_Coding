@@ -81,14 +81,15 @@ BOOST_AUTO_TEST_SUITE( creating_nodes )
 
 		std::string test = "aaabbbcccd";
 		int freq[4] = {3,3,3,1};
-
+		std::list<Node*> testNodes;
 		Huff t1(test);
-		t1.createTree();
 
-		BOOST_CHECK(t1.treeNodes.size() == 4);
+		t1.genereateProbabilities(test, testNodes);
+
+		BOOST_CHECK(testNodes.size() == 4);
 
 		int j = 0;
-		for(auto const& i : t1.treeNodes){
+		for(auto const& i : testNodes){
 			BOOST_CHECK(i->freq == freq[j]);
 			j++;
 		}
@@ -97,32 +98,99 @@ BOOST_AUTO_TEST_SUITE( creating_nodes )
 
 	BOOST_AUTO_TEST_CASE( empty_string ){
 		std::string test = "";
+		std::list<Node*> testNodes;
 		Huff t1(test);
-		t1.createTree();
+		t1.genereateProbabilities(test, testNodes);
 		BOOST_CHECK(t1.treeNodes.size() == 0);
 	}
 
 	BOOST_AUTO_TEST_CASE( one_letter ){
 		std::string test = "a";
+		std::list<Node*> testNodes;
 		Huff t1(test);
-		t1.createTree();
-		BOOST_CHECK(t1.treeNodes.size() == 1);
+		t1.genereateProbabilities(test, testNodes);
+		BOOST_CHECK(t1.treeNodes.size() == 0);
 	}
 
 	BOOST_AUTO_TEST_CASE( mix_letter ){
 		std::string test = "abbcacbcda";
 		int freq[4] = {3,3,3,1};
-
+		std::list<Node*> testNodes;
 		Huff t1(test);
-		t1.createTree();
 
-		BOOST_CHECK(t1.treeNodes.size() == 4);
+		t1.genereateProbabilities(test, testNodes);
+
+		BOOST_CHECK(testNodes.size() == 4);
 
 		int j = 0;
-		for(auto const& i : t1.treeNodes){
+		for(auto const& i : testNodes){
 			BOOST_CHECK(i->freq == freq[j]);
 			j++;
 		}
+	}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE( node_sorter )
+
+	BOOST_AUTO_TEST_CASE( reverse_order ){
+
+		std::string test = "";
+		std::list<Node*> testNodes;
+
+		for(int i = 5; i > 0; i--){
+			testNodes.push_back(new Node(i));
+		}
+
+		Huff t1(test);
+		t1.sortNodes(testNodes);
+
+		int j = 1;
+		for(auto const& i : testNodes){
+			BOOST_CHECK(i->freq == j);
+			j++;
+		}
+
+	}
+
+	BOOST_AUTO_TEST_CASE( empty ){
+
+		std::string test = "";
+		std::list<Node*> testNodes;
+
+		Huff t1(test);
+		t1.sortNodes(testNodes);
+
+		int j = 1;
+		for(auto const& i : testNodes){
+			BOOST_CHECK(i->freq == j);
+			j++;
+		}
+
+	}
+
+	BOOST_AUTO_TEST_CASE( random_order ){
+
+		std::string test = "";
+		std::list<Node*> testNodes;
+
+		
+		testNodes.push_back(new Node(5));
+		testNodes.push_back(new Node(2));
+		testNodes.push_back(new Node(1));
+		testNodes.push_back(new Node(3));
+		testNodes.push_back(new Node(4));
+		
+
+		Huff t1(test);
+		t1.sortNodes(testNodes);
+
+		int j = 1;
+		for(auto const& i : testNodes){
+			BOOST_CHECK(i->freq == j);
+			j++;
+		}
+
 	}
 
 BOOST_AUTO_TEST_SUITE_END()
