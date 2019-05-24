@@ -64,11 +64,33 @@ void Huff::sortNodes(std::list<Node*>& nodeList){
 
 void Huff::constructTree(Node*& root, std::list<Node*> treeNodes){
 
-	
-	
+	while(treeNodes.size() > 1){
+
+		Node* minNode1 = treeNodes.front();
+		treeNodes.pop_front();
+
+		Node* minNode2 = treeNodes.front();
+		treeNodes.pop_front();
+
+		Node* parentNode = new Node(minNode1->freq + minNode2->freq);
+
+		parentNode->leftChild = minNode1;
+		parentNode->rightChild = minNode2;
+
+		treeNodes.push_front(parentNode);
+
+		sortNodes(treeNodes);
+
+	}
+
+	if(treeNodes.size() == 1){
+		root = *treeNodes.begin();
+	}
 	
 
 }
+
+
 
 
 
