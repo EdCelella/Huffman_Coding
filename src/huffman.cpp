@@ -58,5 +58,5 @@ void Huff::genereateProbabilities(std::string inputS, std::list<Node*> &nodeList
 }
 
 void Huff::sortNodes(std::list<Node*>& nodeList){
-	// nodeList.sort([](Node* lhs, Node* rhs) {return lhs->freq < rhs->freq;});
+	nodeList.sort([](Node* lhs, Node* rhs) {return lhs->freq < rhs->freq;});
 }
