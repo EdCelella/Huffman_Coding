@@ -9,7 +9,7 @@ TESTFLAGS = -DUNIT_TEST -lboost_unit_test_framework
 # FILES
 EXE = huffman
 TESTEXE = huffman_test
-SRC = main.cpp
+SRC = huffman.cpp
 TESTSRC = test_suite.cpp
 HEAD = huffman.h
 
@@ -23,7 +23,7 @@ $(EXE): $(SRC) $(HEAD)
 	g++ $(CXXFLAGS) $(filter %.cpp, $^) -o $@
 
 $(TESTEXE): $(SRC) $(TESTSRC) $(HEAD)
-	g++ $(CXXFLAGS) $(TESTFLAGS) $(filter %.cpp, $^) -o $@
+	g++ $(CXXFLAGS) $(filter %.cpp, $^) $(TESTFLAGS) -o $@
 
 clean:
 	rm $(EXE) $(TESTEXE)
