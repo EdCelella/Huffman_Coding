@@ -96,7 +96,17 @@ void Huff::getCode(){
 
 void Huff::generateCode(Node* currentNode, std::string code, std::list<std::pair <char,std::string>>& codes){
 	
-	
+	if(currentNode->c != '\0'){
+		codes.push_back(std::pair<char,std::string>(currentNode->c, code));
+	}
+
+	if(currentNode->leftChild != nullptr){
+		generateCode(currentNode->leftChild, code + "0", codes);
+	}
+
+	if(currentNode->rightChild != nullptr){
+		generateCode(currentNode->rightChild, code + "1", codes);
+	}
 
 }
 
