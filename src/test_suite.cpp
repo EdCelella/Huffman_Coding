@@ -235,6 +235,40 @@ BOOST_AUTO_TEST_SUITE( construct_tree )
 
 BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE( code )
+
+	BOOST_AUTO_TEST_CASE( input_normal ){
+
+		std::string test = "abbcacbcda";
+		Huff t1(test);
+		t1.createTree();
+		t1.getCode();
+
+		std::string codeCheck[] = {"00", "01", "10", "11"};
+
+		int j = 0;
+		for(auto const& i : t1.codes){
+			BOOST_CHECK(i.second == codeCheck[j]);
+			j++;
+		}
+
+	}
+
+	BOOST_AUTO_TEST_CASE( input_same ){
+		
+		std::string test = "aaa";
+		Huff t1(test);
+		t1.createTree();
+		t1.getCode();
+
+		std::string codeCheck = "";
+
+		BOOST_CHECK(t1.codes.front().second == codeCheck);
+
+	}
+
+
+BOOST_AUTO_TEST_SUITE_END()
 
 
 

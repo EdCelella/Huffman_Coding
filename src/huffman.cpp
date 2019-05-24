@@ -90,7 +90,14 @@ void Huff::constructTree(Node*& root, std::list<Node*> treeNodes){
 
 }
 
+void Huff::getCode(){
+	generateCode(this->root, "", this->codes);
+}
 
+void Huff::generateCode(Node* currentNode, std::string code, std::list<std::pair <char,std::string>>& codes){
+	
+	
 
+}
 
 
