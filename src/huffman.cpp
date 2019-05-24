@@ -32,6 +32,7 @@ Huff::Huff(int _input){
 bool Huff::createTree(){
 	genereateProbabilities(this->input, this->treeNodes);
 	sortNodes(this->treeNodes);
+	constructTree(this->root, this->treeNodes);
 	return true;
 }
 
@@ -60,3 +61,14 @@ void Huff::genereateProbabilities(std::string inputS, std::list<Node*> &nodeList
 void Huff::sortNodes(std::list<Node*>& nodeList){
 	nodeList.sort([](Node* lhs, Node* rhs) {return lhs->freq < rhs->freq;});
 }
+
+void Huff::constructTree(Node*& root, std::list<Node*> treeNodes){
+
+	
+	
+	
+
+}
+
+
+

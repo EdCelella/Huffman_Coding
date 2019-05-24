@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <list> 
+#include <list>
+#include <utility> 
 
 struct Node{
 
@@ -8,6 +9,8 @@ struct Node{
 		char c;
 		int freq;
 		Node(unsigned int, char = '\0');
+		Node* leftChild = nullptr;
+		Node* rightChild = nullptr;
 
 };
 
@@ -24,11 +27,17 @@ class Huff{
 		Huff(T1);
 
 		bool createTree();
+		void getCode();
 
 	private:
 		std::list<Node*> treeNodes;
+		Node* root = nullptr;
+		std::list<std::pair <char,std::string>> codes;
+
 		static void genereateProbabilities(std::string, std::list<Node*>&);
 		static void sortNodes(std::list<Node*>&);
+		static void constructTree(Node*&, std::list<Node*>);
+		static void generateCode(Node*, std::string, std::list<std::pair <char,std::string>>&);
 
 };
 

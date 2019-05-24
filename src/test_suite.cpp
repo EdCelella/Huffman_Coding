@@ -215,18 +215,28 @@ BOOST_AUTO_TEST_SUITE( node_sorter )
 
 BOOST_AUTO_TEST_SUITE_END()
 
-// BOOST_AUTO_TEST_SUITE( construct_tree )
+BOOST_AUTO_TEST_SUITE( construct_tree )
 
-// 	BOOST_AUTO_TEST_CASE( contructor_assign_char ){
-		
-// 	}
+	BOOST_AUTO_TEST_CASE( contruct_normal ){
+		std::string test = "abbcacbcda";
+		Huff t1(test);
+		t1.createTree();
 
-// 	BOOST_AUTO_TEST_CASE( contructor_assign_freq ){
-		
-// 	}
+		BOOST_CHECK(t1.root->freq == 10);
+	}
 
-// 	BOOST_AUTO_TEST_CASE( contructor_no_char ){
-		
-// 	}
+	// BOOST_AUTO_TEST_CASE( contructor_empty ){
+	// 	std::string test = "";
+	// 	Huff t1(test);
+	// 	t1.createTree();
 
-// BOOST_AUTO_TEST_SUITE_END()
+	// 	BOOST_CHECK(t1.root->freq == 10);
+	// }
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+
+
+
+
