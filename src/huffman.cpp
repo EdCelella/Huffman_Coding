@@ -28,3 +28,30 @@ Huff::Huff(char _input[]){
 Huff::Huff(int _input){
 	input = std::to_string(_input);
 }
+
+bool Huff::createTree(){
+	genereateProbabilities(input, treeNodes);
+	return true;
+}
+
+void Huff::genereateProbabilities(std::string inputS, std::list<Node*> &nodeList){
+	
+	for(int i = 0; i < inputS.size(); i++){
+		
+		bool createNode = true;
+
+		for(auto const& j : nodeList){
+			if(j->c == inputS[i]){
+				j->freq++;
+				createNode = false;
+			}
+		}
+
+		if(createNode){
+			Node* newNode = new Node(1,inputS[i]);
+			nodeList.push_back(newNode);
+		}
+		
+	}
+
+}

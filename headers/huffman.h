@@ -23,8 +23,11 @@ class Huff{
 		template<typename T1>
 		Huff(T1);
 
+		bool createTree();
+
 	private:
 		std::list<Node*> treeNodes;
+		static void genereateProbabilities(std::string, std::list<Node*>&);
 
 };
 
