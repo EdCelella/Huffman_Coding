@@ -28,6 +28,7 @@ class Huff{
 	private:
 		std::list<Node*> treeNodes;
 		static void genereateProbabilities(std::string, std::list<Node*>&);
+		static void sortNodes(std::list<Node*>&);
 
 };
 
