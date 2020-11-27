@@ -29,10 +29,11 @@ class Huff{
 		bool createTree();
 		void getCode();
 
+		std::list<std::pair <char,std::string>> codes;
+
 	private:
 		std::list<Node*> treeNodes;
 		Node* root = nullptr;
-		std::list<std::pair <char,std::string>> codes;
 
 		static void genereateProbabilities(std::string, std::list<Node*>&);
 		static void sortNodes(std::list<Node*>&);

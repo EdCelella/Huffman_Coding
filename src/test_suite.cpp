@@ -134,14 +134,12 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE( node_sorter )
 
 	BOOST_AUTO_TEST_CASE( reverse_order ){
-
 		std::string test = "";
 		std::list<Node*> testNodes;
 
 		for(int i = 5; i > 0; i--){
 			testNodes.push_back(new Node(i));
 		}
-
 		Huff t1(test);
 		t1.sortNodes(testNodes);
 
@@ -150,67 +148,50 @@ BOOST_AUTO_TEST_SUITE( node_sorter )
 			BOOST_CHECK(i->freq == j);
 			j++;
 		}
-
 	}
 
 	BOOST_AUTO_TEST_CASE( empty ){
-
 		std::string test = "";
 		std::list<Node*> testNodes;
-
 		Huff t1(test);
 		t1.sortNodes(testNodes);
-
 		int j = 1;
 		for(auto const& i : testNodes){
 			BOOST_CHECK(i->freq == j);
 			j++;
 		}
-
 	}
 
 	BOOST_AUTO_TEST_CASE( random_order ){
-
 		std::string test = "";
 		std::list<Node*> testNodes;
-
-		
 		testNodes.push_back(new Node(5));
 		testNodes.push_back(new Node(2));
 		testNodes.push_back(new Node(1));
 		testNodes.push_back(new Node(3));
 		testNodes.push_back(new Node(4));
-		
-
 		Huff t1(test);
 		t1.sortNodes(testNodes);
-
 		int j = 1;
 		for(auto const& i : testNodes){
 			BOOST_CHECK(i->freq == j);
 			j++;
 		}
-
 	}
 
 	BOOST_AUTO_TEST_CASE( negative_numbers ){
-
 		std::string test = "";
 		std::list<Node*> testNodes;
-
 		for(int i = -5; i < 0; i++){
 			testNodes.push_back(new Node(i));
 		}
-
 		Huff t1(test);
 		t1.sortNodes(testNodes);
-
 		int j = -5;
 		for(auto const& i : testNodes){
 			BOOST_CHECK(i->freq == j);
 			j++;
 		}
-
 	}
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -220,18 +201,19 @@ BOOST_AUTO_TEST_SUITE( construct_tree )
 	BOOST_AUTO_TEST_CASE( contruct_normal ){
 		std::string test = "abbcacbcda";
 		Huff t1(test);
-		t1.createTree();
+		bool b = t1.createTree();
 
 		BOOST_CHECK(t1.root->freq == 10);
+		BOOST_CHECK(b == true);
 	}
 
-	// BOOST_AUTO_TEST_CASE( contructor_empty ){
-	// 	std::string test = "";
-	// 	Huff t1(test);
-	// 	t1.createTree();
+	BOOST_AUTO_TEST_CASE( contructor_empty ){
+		std::string test = "";
+		Huff t1(test);
+		bool b = t1.createTree();
 
-	// 	BOOST_CHECK(t1.root->freq == 10);
-	// }
+		BOOST_CHECK(b == false);
+	}
 
 BOOST_AUTO_TEST_SUITE_END()
 

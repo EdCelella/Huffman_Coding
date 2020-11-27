@@ -30,6 +30,7 @@ Huff::Huff(int _input){
 }
 
 bool Huff::createTree(){
+	if (this->input == "") return false;
 	genereateProbabilities(this->input, this->treeNodes);
 	sortNodes(this->treeNodes);
 	constructTree(this->root, this->treeNodes);
@@ -37,7 +38,7 @@ bool Huff::createTree(){
 }
 
 void Huff::genereateProbabilities(std::string inputS, std::list<Node*> &nodeList){
-	
+
 	for(int i = 0; i < inputS.size(); i++){
 		
 		bool createNode = true;
