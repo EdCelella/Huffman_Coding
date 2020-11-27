@@ -29,6 +29,27 @@ Huff::Huff(int _input){
 	input = std::to_string(_input);
 }
 
+Huff::~Huff(){
+
+	if (root != nullptr) destructor_rec(root);
+	else{
+		std::list<Node*>::iterator it;
+		for (it = this->treeNodes.begin(); it != this->treeNodes.end(); ++it){
+			delete *it;
+		}
+	}
+	this->treeNodes.clear();
+	
+}
+
+void Huff::destructor_rec(Node*& currentNode){
+	if(currentNode != nullptr){
+		destructor_rec(currentNode->leftChild);
+		destructor_rec(currentNode->rightChild);
+		delete currentNode;
+	}
+}
+
 bool Huff::createTree(){
 	if (this->input == "") return false;
 	genereateProbabilities(this->input, this->treeNodes);

@@ -25,6 +25,7 @@ class Huff{
 		Huff(int);
 		template<typename T1>
 		Huff(T1);
+		~Huff();
 
 		bool createTree();
 		void getCode();
@@ -39,6 +40,7 @@ class Huff{
 		static void sortNodes(std::list<Node*>&);
 		static void constructTree(Node*&, std::list<Node*>);
 		static void generateCode(Node*, std::string, std::list<std::pair <char,std::string>>&);
+		static void destructor_rec(Node*&);
 
 };
 
